@@ -15,5 +15,15 @@
         }
     ],
     "minimum-stability": "beta",
-    "require": {}
+    "require": {},
+    "extra": {
+        "windwalker":{
+            "packages": [
+                "Lyrasoft\\TokenCoin\\TokenCoinPackage"
+            ],
+            "modules": [
+                "src/Module"
+            ]
+        }
+    }
 }
