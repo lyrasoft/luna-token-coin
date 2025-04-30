@@ -16,8 +16,8 @@ namespace App\View;
  * @var  $lang      LangService     The language translation service.
  */
 
+use Lyrasoft\Luna\Entity\User;
 use Lyrasoft\TokenCoin\Entity\TokenCoinHistory;
-use App\Entity\User;
 use Lyrasoft\TokenCoin\Enum\TokenCoinAction;
 use Lyrasoft\TokenCoin\Service\TokenCoinService;
 use Unicorn\Workflow\BasicStateWorkflow;

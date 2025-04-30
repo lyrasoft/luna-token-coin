@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lyrasoft\TokenCoin\Module\Admin\TokenCoinHistory;
 
+use Lyrasoft\Luna\Entity\User;
 use Lyrasoft\TokenCoin\Module\Admin\TokenCoinHistory\Form\GridForm;
 use Lyrasoft\TokenCoin\Entity\TokenCoinHistory;
 use Lyrasoft\TokenCoin\Repository\TokenCoinHistoryRepository;
@@ -64,6 +65,13 @@ class TokenCoinHistoryListView implements ViewModelInterface, FilterAwareViewMod
         $ordering = $state->rememberFromRequest('list_ordering') ?? $this->getDefaultOrdering();
 
         $items = $this->repository->getListSelector($type)
+            // Replace this join if you map token coins to other table
+            ->leftJoin(
+                User::class,
+                'user',
+                'token_coin_history.target_id',
+                'user.id'
+            )
             ->setFilters($filter)
             ->searchTextFor(
                 $search['*'] ?? '',

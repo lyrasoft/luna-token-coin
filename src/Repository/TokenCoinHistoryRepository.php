@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lyrasoft\TokenCoin\Repository;
 
-use App\Entity\User;
+use Lyrasoft\Luna\Entity\User;
 use Lyrasoft\TokenCoin\Entity\TokenCoinHistory;
 use Unicorn\Attributes\ConfigureAction;
 use Unicorn\Attributes\Repository;
@@ -28,12 +28,6 @@ class TokenCoinHistoryRepository implements ManageRepositoryInterface, ListRepos
         $selector = $this->createSelector();
 
         $selector->from(TokenCoinHistory::class)
-            ->leftJoin(
-                User::class,
-                'user',
-                'token_coin_history.target_id',
-                'user.id'
-            )
             ->leftJoin(
                 User::class,
                 'agent',
