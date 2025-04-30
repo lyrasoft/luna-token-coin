@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Migration;
 
 use Lyrasoft\TokenCoin\Entity\TokenCoinHistory;
-use App\Entity\User;
 use Windwalker\Core\Console\ConsoleApplication;
 use Windwalker\Core\Migration\Migration;
 use Windwalker\Database\Schema\Schema;
@@ -40,15 +39,6 @@ $mig->up(
                 $schema->addIndex('agent_id');
             }
         );
-
-        $mig->updateTable(
-            User::class,
-            function (Schema $schema) {
-                $schema->decimal('token_coins')->length('20,4')->after('password');
-
-                $schema->addIndex('token_coins');
-            }
-        );
     }
 );
 
@@ -58,6 +48,5 @@ $mig->up(
 $mig->down(
     static function () use ($mig) {
         $mig->dropTables(TokenCoinHistory::class);
-        $mig->dropTableColumns(User::class, 'token_coins');
     }
 );
